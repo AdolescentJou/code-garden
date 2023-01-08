@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container {
+        width: 500px;
+        height: 200px;
+        padding: 10px;
+        margin: auto !important;
+        border: 1px solid black;
+        display: flex;
+      }
+
+      .box{
+        padding: 20px;
+        /* flex-grow: 0; 
+        flex-shrink: 1;
+        flex-basis: auto; */
+        flex: 1;
+        background-color: orange;
+      }
+      
+      span{
+        display: block;
+        font-size: 16px;
+        word-wrap: break-word;
+        white-space: normal;
+        /* hyphens: auto; */
+        /* word-break: break-all; */
+      }
+
+      .box + .box{
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"><span>oevniv wevnoewvn wvuebvwbvoebv ivwuvbwbv wovuvbuivb wcownvinv</span></div>
+      <div class="box"><span>ewneoinv wevuiwebv wevbeuwvb wevnuvb</span></div>
+      <div class="box"><span>eivneivn vwubvuvv eivubuvbeuvbivbv vuvbbvwiuvbivbiwbvubeuvbev vebv</span></div>
+    </div>
+  </body>
+</html>
