@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+    }
+    .parent {
+      width: 200px;
+      height: 100px;
+      background: #168bf5;
+      z-index: 1;
+      position: relative;
+    }
+    .child {
+      width: 100px;
+      height: 200px;
+      background: #32d19c;
+      position: relative;
+      z-index: -12;
+    }
+  </style>
+  </head>
+  
+  <body>
+    <div class="box">
+      <div class="parent">
+        parent
+        <div class="child">child</div>
+      </div>
+    </div>
+  </body>
+</html>
