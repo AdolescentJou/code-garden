@@ -90,6 +90,7 @@ const VirList4 = memo(function ({ list = [], containerHeight = 800, ItemBox = <>
   );
 
   // 使用translate来校正滚动条位置
+  // 也可以使用paddingTop来实现，目的是将子节点准确放入视口中
   const getTransform = useCallback(
     function () {
       return `translate3d(0,${startIndex >= 1 ? positionCache[startIndex - 1].bottom : 0}px,0)`;

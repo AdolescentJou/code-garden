@@ -22,7 +22,7 @@ const TestVirtual2 = () => {
   });
 
   return (
-    <div className={'container'} style={{ width: '600px', margin: 'auto', padding: '15px', border: '1px solid black' }}>
+    <div className={'container'} style={{ width: '600px', margin: 'auto', marginTop:'100px',padding: '15px', border: '1px solid black' }}>
       <VirList4 list={items} containerHeight={500} ItemBox={ItemBox} />
     </div>
   );
