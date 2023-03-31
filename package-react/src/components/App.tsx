@@ -1,14 +1,12 @@
 import React from 'react';
 import './app.less';
-import TestVirtual from './virtual-scroll/test';
-import TestVirtual2 from './virtual-scroll/test2';
-
+import TimeSlice from './time-slice';
 
 
 function App() {
   return (
     <div className="App">
-      <TestVirtual2/>
+      <TimeSlice/>
     </div>
   );
 }

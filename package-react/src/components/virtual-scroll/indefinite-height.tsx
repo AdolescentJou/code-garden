@@ -19,7 +19,7 @@ const VirList4 = memo(function ({ list = [], containerHeight = 800, ItemBox = <>
         index: i,
         height: estimatedItemHeight,
         top: i * estimatedItemHeight,
-        bottom: (i + 1) * estimatedItemHeight,  // 元素底部和容器顶部的距离
+        bottom: (i + 1) * estimatedItemHeight, // 元素底部和容器顶部的距离
       };
     });
     return positList;
@@ -93,7 +93,13 @@ const VirList4 = memo(function ({ list = [], containerHeight = 800, ItemBox = <>
   // 也可以使用paddingTop来实现，目的是将子节点准确放入视口中
   const getTransform = useCallback(
     function () {
-      return `translate3d(0,${startIndex >= 1 ? positionCache[startIndex - 1].bottom : 0}px,0)`;
+      // return `translate3d(0,${startIndex >= 1 ? positionCache[startIndex - 1].bottom : 0}px,0)`;
+      return {
+        // 改变空白填充区域的样式，起始元素的top值就代表起始元素距顶部的距离，可以用来充当paddingTop值
+        paddingTop: `${positionCache[startIndex].top}px`,
+        // 缓存中最后一个元素的bottom值与endIndex对应元素的bottom值的差值可以用来充当paddingBottom的值
+        paddingBottom: `${positionCache[positionCache.length - 1].bottom - positionCache[endIndex].bottom}px`,
+      };
     },
     [positionCache, startIndex],
   );
@@ -197,18 +203,12 @@ const VirList4 = memo(function ({ list = [], containerHeight = 800, ItemBox = <>
     return tempIndex;
   };
 
-  console.log('wraperHeight',wraperHeight);
-  
+  console.log('wraperHeight', wraperHeight);
 
   return (
     <div style={{ overflowY: 'auto', overflowX: 'hidden', height: `${containerHeight + 'px'}` }} ref={ContainerRef} onScroll={handleSrcoll}>
       <div style={{ position: 'relative', backgroundColor: 'pink', height: wraperHeight + 'px' }}>
-        <Wraper
-          style={{
-            transform: getTransform(),
-          }}
-          ref={WraperRef}
-        >
+        <Wraper style={getTransform()} ref={WraperRef}>
           {renderList()}
         </Wraper>
       </div>
