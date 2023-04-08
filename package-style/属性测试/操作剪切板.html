@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function setDataToClipboard(content) {
+        try {
+          navigator.clipboard.writeText(content);
+          console.log('success');
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      }
+      // setDataToClipboard('1234');
+
+      // 目前不可用
+      function copy2clipboard(copyText) {
+        const input = document.createElement('input');
+        input.style.position = 'fixed';
+        input.style.opacity = 0;
+        input.setAttribute('readonly', 'readonly');
+        input.setAttribute('value', copyText);
+        document.body.appendChild(input);
+        input.setSelectionRange(0, 9999);
+        if (document.execCommand('copy')) {
+          document.execCommand('copy');
+          console.log('复制成功');
+        }
+        document.body.removeChild(input);
+      }
+      copy2clipboard('123  wwf467');
+    </script>
+  </body>
+</html>

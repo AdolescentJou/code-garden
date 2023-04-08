@@ -1,10 +1,12 @@
 import React from 'react';
 import './app.less';
-import TestUseLayoutEffect from './react-hook-test/use-LayoutEffect';
+import TimeSlice from './time-slice';
+
+
 function App() {
   return (
     <div className="App">
-      <TestUseLayoutEffect/>
+      <TimeSlice/>
     </div>
   );
 }

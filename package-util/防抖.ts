@@ -1,12 +1,10 @@
-
-
 /*
   编写方法实现debounce
 
   尽可能的去优化它
 */
 
-function debounce(fn: { (): void; apply?: any; }, delay: number | undefined) {
+function debounce(fn: { (): void; apply?: any }, delay: number | undefined) {
   let timer: number | undefined;
   const _ = this;
   return function (_: any, ...args: any) {
@@ -20,8 +18,8 @@ function debounce(fn: { (): void; apply?: any; }, delay: number | undefined) {
   };
 }
 
-function test(){
+function test() {
   console.log('方法开始执行');
 }
 
-const debounceTest = debounce(test,3000);
+const debounceTest = debounce(test, 3000);
