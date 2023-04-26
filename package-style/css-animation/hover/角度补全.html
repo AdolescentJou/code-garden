@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .box {
+        width: 400px;
+        height: 240px;
+        margin: 30px auto;
+        background-color: #58a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .box::before {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 0px;
+        height: 0px;
+        top: 3px;
+        right: 3px;
+        border-top: 2px solid gray;
+        border-right: 2px solid gray;
+        transition: all .5s ease-in-out;
+      }
+
+      .box:hover .mask {
+        right: -60px;
+        top: -60px;
+      }
+
+      .box:hover::before {
+        width: 50px;
+        height: 50px;
+      }
+
+      .inner {
+        width: 396px;
+        height: 236px;
+        background: white;
+      }
+
+      .mask {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        right: -35px;
+        top: -35px;
+        background-color: white;
+        border: 0px solid #58a;
+        border-bottom-width: 2px;
+        transform-origin: 50% 50%;
+        transform: rotate(45deg);
+        transition: all 0.5s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="mask"></div>
+      <div class="inner"></div>
+    </div>
+  </body>
+</html>

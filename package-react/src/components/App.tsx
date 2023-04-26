@@ -1,12 +1,11 @@
 import React from 'react';
 import './app.less';
-import TimeSlice from './time-slice';
-
+import OriginDemo from './react-progress/update-lane';
 
 function App() {
   return (
     <div className="App">
-      <TimeSlice/>
+      <OriginDemo/>
     </div>
   );
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.loading {
+		height: 30px;
+		width: 30px;
+		background-image: url('../assets/loading-dot.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		transform: rotate(0deg);
+	}
+
+	.step {
+
+		animation: identifier 2s steps(10, end) 0s infinite normal forwards;
+	}
+
+	.transition {
+		animation: identifier 2s linear 0s infinite normal forwards;
+
+	}
+
+	@keyframes identifier {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+
+<body>
+	<span>逐帧</span>
+	<div class="loading step"></div>
+	<span>平滑</span>
+	<div class="loading transition"></div>
+</body>
+
+</html>

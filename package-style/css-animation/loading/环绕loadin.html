@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			overflow: hidden;
+		}
+
+		.container {
+			width: 160px;
+			height: 100px;
+			margin: auto;
+			margin-top: calc(100vh / 2 - 50px);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			position: relative;
+		}
+
+		.box {
+			width: 30px;
+			height: 30px;
+			transform: translate(0px, 0px) scale(1.0, 1.0);
+			border-radius: 15px;
+		}
+
+		.box:nth-child(1) {
+			background-color: #36C476;
+			animation: leftBox 3s linear 0s infinite both;
+		}
+		
+		.box:nth-child(2) {
+			background-color: #9B59B6;
+			animation: rightBox 3s linear 0s infinite both;
+		}
+
+		@keyframes leftBox {
+
+			0%,
+			100% {
+				z-index: 2;
+				transform: translate(0px, 0px) scale(1.0, 1.0);
+			}
+
+			25% {
+				z-index: 1;
+				transform: translate(75px, 0px) scale(0.8,0.8);
+
+			}
+
+			50% {
+				z-index: 2;
+				transform: translate(150px, 0px) scale(1.0, 1.0);
+
+			}
+
+			75% {
+				z-index: 2;
+				transform: translate(75px, 0px) scale(1.2,1.2);
+
+			}
+
+		}
+
+		@keyframes rightBox {
+
+			0%,
+			100% {
+				z-index: 1;
+				transform: translate(0px, 0px) scale(1.0, 1.0);
+			}
+
+			25% {
+				z-index: 2;
+				transform: translate(-75px, 0px) scale(1.2, 1.2);
+			}
+
+			50% {
+				z-index: 1;
+				transform: translate(-150px, 0px) scale(1.0, 1.0);
+			}
+
+			75% {
+				z-index: 1;
+				transform: translate(-75px, 0px) scale(0.8, 0.8);
+			}
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+
+</body>
+
+</html>

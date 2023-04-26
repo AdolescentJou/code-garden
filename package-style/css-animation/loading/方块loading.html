@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			background: #E51C23;
+			overflow: hidden;
+		}
+
+		.container {
+			width: 280px;
+			height: 100px;
+			margin: 100px auto;
+			margin-top: calc(100vh / 2 - 50px);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+
+		.move-in {
+			margin: 0 2px 0;
+			width: 12px;
+			height: 12px;
+		}
+
+		.move-in-1 {
+			animation: row-move-in 1s ease-out 0s 1 both;
+		}
+
+		.move-in-2 {
+			animation: row-move-in 1s ease-out .5s 1 both;
+		}
+
+		.move-in-3 {
+			animation: row-move-in 1s ease-out 1s 1 both;
+		}
+
+		.move-in-4 {
+			animation: row-move-in 1s ease-out 1.5s 1 both;
+		}
+
+		.move-in-5 {
+			animation: row-move-in 1s ease-out 2s 1 both;
+		}
+
+		.move {
+			width: 12px;
+			height: 12px;
+			border-radius: 3px;
+			background: #FFF;
+		}
+
+		.move-1 {
+			animation: row-move 1s linear 1s 1 both;
+		}
+
+		.move-2 {
+			animation: row-move 1s linear 1.5s 1 both;
+		}
+
+		.move-3 {
+			animation: row-move 1s linear 2s 1 both;
+		}
+
+		.move-4 {
+			animation: row-move 1s linear 2.5s 1 both;
+		}
+
+		.move-5 {
+			animation: row-move 1s linear 3s 1 both;
+		}
+
+		.move-out {
+			width: 12px;
+			height: 12px;
+		}
+
+		.move-out-1 {
+			animation: row-move-out 1s ease-in 2s 1 both;
+		}
+
+		.move-out-2 {
+			animation: row-move-out 1s ease-in 2.5s 1 both;
+		}
+
+		.move-out-3 {
+			animation: row-move-out 1s ease-in 3s 1 both;
+		}
+
+		.move-out-4 {
+			animation: row-move-out 1s ease-in 3.5s 1 both;
+		}
+
+		.move-out-5 {
+			animation: row-move-out 1s ease-in 4s 1 both;
+		}
+
+		@keyframes row-move-in {
+			0% {
+				transform: translate(2000px, 0px);
+			}
+
+			100% {
+				transform: translate(30px, 0px);
+			}
+		}
+
+		@keyframes row-move {
+			0% {
+				transform: translate(30px, 0px);
+			}
+
+			100% {
+				transform: translate(0px, 0px);
+			}
+		}
+
+		@keyframes row-move-out {
+			0% {
+				transform: translate(-100px, 0px);
+			}
+
+			100% {
+				transform: translate(-2000px, 0px);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="move-in move-in-1">
+			<div class="move-out move-out-1">
+				<div class="move move-1"></div>
+			</div>
+		</div>
+		<div class="move-in move-in-2">
+			<div class="move-out move-out-2">
+				<div class="move move-2"></div>
+			</div>
+		</div>
+		<div class="move-in move-in-3">
+			<div class="move-out move-out-3">
+				<div class="move move-3"></div>
+			</div>
+		</div>
+		<div class="move-in move-in-4">
+			<div class="move-out move-out-4">
+				<div class="move move-4"></div>
+			</div>
+		</div>
+		<div class="move-in move-in-5">
+			<div class="move-out move-out-5">
+				<div class="move move-5"></div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

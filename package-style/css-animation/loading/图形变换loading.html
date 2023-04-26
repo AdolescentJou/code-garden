@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	body {
+		overflow: hidden;
+	}
+
+	.container {
+		width: 140px;
+		height: 100px;
+		margin: auto;
+		margin-top: calc(100vh / 2 - 50px);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	.box {
+		width: 30px;
+		height: 30px;
+		transform: rotate(45deg);
+		transform: translate(0px,0px);
+	}
+
+	.box:nth-child(1) {
+		background-color: #36C476;
+		animation: transform_box_left 2s ease-in-out 0s infinite both;
+	}
+
+	.box:nth-child(2) {
+		background-color: #9B59B6;
+		animation: transform_box_right 2s ease-in-out 0s infinite both;
+	}
+
+	@keyframes transform_box_left {
+
+		0%,
+		100% {
+			background-color: #36C476;
+			transform: translate(0px, 0px) rotate(45deg);
+			border-radius: 0px;
+		}
+		
+		50% {
+			background-color: #9B59B6;
+			transform: translate(100px, 0px) rotate(135deg);
+			border-radius: 15px;
+		}
+	}
+
+	@keyframes transform_box_right {
+
+		0%,
+		100% {
+			background-color: #9B59B6;
+			transform: translate(0px, 0px) rotate(45deg);
+			border-radius: 0px;
+		}
+
+		50% {
+			background-color: #36C476;
+			transform: translate(-100px, 0px) rotate(135deg);
+			border-radius: 15px;
+		}
+	}
+</style>
+
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+</body>
+
+</html>
