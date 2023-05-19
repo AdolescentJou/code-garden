@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>elfin animation</title>
+    <script src="https://rengar-1253859411.file.myqcloud.com/libs/elfinTpl/1.0.0/index.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .noscroll {
+        overflow: hidden;
+      }
+
+      #content cdmation-delay-list {
+        grid-gap: 36px;
+        padding-right: 72px;
+        padding-left: 72px;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module" src="./components/index.js"></script>
+    <div id="content"></div>
+    <cdmation-modal id="modal"></cdmation-modal>
+    <script id="content_tpl" type="text/html">
+      <cdmation-delay-list>
+        <% for (i = 0, l = list.length; i < l; i++) { %>
+          <cdmation-delay-list-item>
+            <img src="<%= list[i].image %>" style="display: block;object-fit: contain;" width="100%" height="100%" onclick="bindImgClick(event, '<%= list[i].component %>', '<%= list[i].path %>')" />
+          </cdmation-delay-list-item>
+        <% } %>
+      </cdmation-delay-list>
+    </script>
+    <script>
+      customElements.whenDefined('cdmation-delay-list').then(function () {
+        let list = [
+          { image: './assets/delay-list.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/BXJNKCeUSkhQoSS.png', component: 'digital-change', path: './pages/digital-change/index.js' },
+          { image: 'http://image.woshipm.com/wp-files/2020/06/pXyZcn8Gbdw1NZbpB5Kv.gif', component: 'ring-loading', path: './pages/ring-loading/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/SDLiKqyfBvnKMrA.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/QJmGZYJBRLkxFSy.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/PDiTkHViQNVHddN.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/beHtidyjUMOXbkI.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/vJcpMCTaSKSVWyH.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/dvQuFtUoRmvWLsZ.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+          { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png', component: 'delay-list', path: './pages/delay-list/index.js' },
+        ];
+        document.querySelector('#content').innerHTML = elfinTpl(
+          document.querySelector('#content_tpl').innerHTML,
+          { list },
+        );
+      });
+
+      function bindImgClick(event, component, path) {
+        let modal = document.querySelector('#modal');
+        let open = modal.getAttribute('open');
+        if (modal && open !== 'true' && component && path) {
+          if (!customElements.get(component)) {
+            // 动态加载组件
+            let script = document.createElement('script');
+            script.setAttribute('type', 'module');
+            script.setAttribute('src', path);
+            document.body.appendChild(script);
+          }
+          // 监听组件注册
+          customElements.whenDefined(component).then(() => {
+            let newComponent = document.createElement(component);
+            modal.appendChild(newComponent);
+            modal.setAttribute('loading', false);
+          });
+          modal.setAttribute('open', true);
+          modal.setAttribute('loading', true);
+        }
+      }
+    </script>
+  </body>
+</html>
