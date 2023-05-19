@@ -1,0 +1,35 @@
+.container {
+  width: 600px;
+  border: 2px solid orange;
+  margin: 30px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .common_box {
+    padding: 20px;
+    box-sizing: border-box;
+
+    &:nth-child(-n + 2) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .top {
+    height: 150px;
+    width: 100%;
+    background-color: #1984d1;
+  }
+
+  .body {
+    height: 300px;
+    width: 100%;
+    background-color: #d987ac;
+  }
+
+  .bottom {
+    height: 150px;
+    width: 100%;
+    background-color: skyblue;
+  }
+}

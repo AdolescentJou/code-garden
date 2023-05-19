@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .box {
+        width: 400px;
+        height: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        border: 1px solid orange;
+      }
+
+      .box:hover .box_inner {
+        background-position-x: left;
+        background-size: 100% 2px;
+      }
+
+      .box_inner {
+        width: 100%;
+        font-size: 24px;
+        background: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
+        background-size: 0 2px;
+        transition: background-size 1300ms;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="box_inner"> nnowing oiwengoiwgo wiugb weg iuwenbg wn gn eoing oien wib guwebg e ueibg egebg iebg u</span>
+    </div>
+  </body>
+</html>

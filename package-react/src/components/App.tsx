@@ -1,11 +1,11 @@
 import React from 'react';
 import './app.less';
-import OriginDemo from './react-progress/update-lane';
+import SlotTest from './slot-test';
 
 function App() {
   return (
     <div className="App">
-      <OriginDemo/>
+      <SlotTest />
     </div>
   );
 }
