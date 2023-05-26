@@ -51,7 +51,7 @@ function fetchUser() {
 }
 
 function fetchPosts() {
-  console.log('fetch posts...');
+  // console.log('fetch posts...');
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log('fetched posts');
