@@ -1,11 +1,11 @@
 import React from 'react';
 import './app.less';
-import ProfilePage from './supense-test';
+import SlotTest from './slot-test';
 
 function App() {
   return (
     <div className="App">
-      <ProfilePage />
+      <SlotTest />
     </div>
   );
 }
