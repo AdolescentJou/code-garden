@@ -60,7 +60,6 @@ const Slot = (props: any) => {
   const slotNewProps = SlotProps;
   let childSlot: any = children;
   childSlot = getSlot(children, slotname, slotNewProps);
-
   return childSlot;
 };
 

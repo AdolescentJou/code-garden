@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getUser() {
+        // 测试普通错误
+        // throw new Error("普通错误");
+
+        console.log('getUser');
+        const user1 = fetch('https://api.uomg.com/api/rand.qinghua');
+        // const user2 = fetch('https://api.uomg.com/api/rand.qinghua');
+        console.log('getUser已获取到用户数据user1', user1);
+        // console.log('getUser已获取到用户数据user2', user2);
+        // console.log('user1 === user2', user1 === user2);
+        return user1;
+      }
+
+      function main() {
+        console.log('main');
+        const user = getUser();
+        console.log('feng', user);
+      }
+
+      // run函数为主要代码，该函数会将异步操作进行处理。
+      function run(fn) {
+        // 保留原有fetch，发起请求时使用。
+        const originalFetch = window.fetch;
+        // 缓存结果
+        const cache = [];
+        // 记录fetch调用的顺序，从而缓存多次fetch请求结果。(整条链路上可能有多个fetch调用，需要分别缓存)
+        let i = 0;
+
+        // 改写fetch，当有异步操作时则中断fn执行，异步有结果时，重新执行fn，并将异步结果返回。
+        window.fetch = (...args) => {
+          // 命中缓存
+          if (cache[i]) {
+            const cacheData = cache[i];
+            // 使用i++(第一个fetch执行完，才能执行下一个。所以i的变动放在完成后是较好的)
+            // 第一次fetch未命中缓存，存下标0的位置。第一次fetch有结果，重新执行fn，重置i为0，下标0有结果命中缓存，i++为1。
+            // 第二次fetch未命中缓存，存下标1的位置。第二次fetch有结果，重新执行fn，重置i为0，下标0有结果命中缓存，下标1有结果命中缓存，i++为2。
+            i++;
+            // 判断结果成功与否，从而决定是否抛出错误。
+            // 不需要判断是否等于pending，promise改变了状态才会重新执行fn。
+            if (cacheData.status === 'fulfilled') {
+              return cacheData.data;
+            }
+            if (cacheData.status === 'rejected') {
+              throw cacheData.err;
+            }
+          } else {
+            // 未命中缓存
+            const result = {
+              status: 'pending',
+              data: null,
+              err: null,
+            };
+            cache[i] = result;
+            throw originalFetch(...args)
+              .then((res) => res.json())
+              .then((jsonData) => {
+                result.status = 'fulfilled';
+                result.data = jsonData;
+                console.log('aaa');
+              })
+              .catch((err) => {
+                result.status = 'rejected';
+                result.err = err;
+              });
+          }
+        };
+
+        const execute = () => {
+          try {
+            // i需要重置。因为fn可能是重新执行的，需要准确获取缓存。(改写后的fetch，类似React的hook，用调用顺序记录不同的state)
+            i = 0;
+            fn();
+          } catch (err) {
+            // 捕获promise
+            if (err instanceof Promise) {
+              // 当异步有结果时重新执行fn。
+              // 重新执行的fn依旧需要try catch进行错误处理，所以不能单独执行fn。
+              // 注意此处并不是递归，只是不断从微任务队列取任务执行。所以不会栈溢出。但是有可能同一事件循环太多任务，导致页面卡顿。
+              err.then(() => {
+                console.log('ggg');
+                execute();
+              }, execute);
+            } else {
+              // 将普通错误抛出去
+              throw err;
+            }
+          }
+        };
+
+        execute();
+      }
+
+      run(main);
+    </script>
+  </body>
+</html>
