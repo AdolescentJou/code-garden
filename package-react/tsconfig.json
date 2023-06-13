@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "../package-util/tracking"  ]
+, "../package-util/tracking", "public/hash.js"  ]
 }
