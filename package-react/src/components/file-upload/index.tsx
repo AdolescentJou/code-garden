@@ -4,7 +4,7 @@ import { request } from './utils';
 
 // the chunk size
 const SIZE = 1024 * 1024;
-let worker: any = null;
+let worker: any = null; 
 let requestListControl: any = [];
 const FileUpload = () => {
   const [fileChunks, setFileChunks] = useState<any>([]);

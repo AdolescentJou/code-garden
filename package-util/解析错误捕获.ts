@@ -1,5 +1,5 @@
 // 编码失败返回默认值或者为空
-export function encodeTry(str, defStr: any = '') {
+export function encodeTry(str: string | number | boolean, defStr: any = '') {
   try {
     return encodeURIComponent(str);
   } catch (error) {
@@ -9,7 +9,7 @@ export function encodeTry(str, defStr: any = '') {
 }
 
 // 解码失败返回默认值或者为空
-export function decodeTry(str, defStr: any = '') {
+export function decodeTry(str: string, defStr: any = '') {
   try {
     return decodeURIComponent(str);
   } catch (error) {
@@ -19,7 +19,7 @@ export function decodeTry(str, defStr: any = '') {
 }
 
 // 解析JSON
-export function parseJSON(str, defVal: any = '') {
+export function parseJSON(str: string, defVal: any = '') {
   try {
     return JSON.parse(str);
   } catch (error) {
