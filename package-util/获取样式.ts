@@ -19,7 +19,7 @@ export const getStyleHeight = (el: HTMLDivElement) => {
   const height = parseInt(style.getPropertyValue('height'), 10);
   return height || el.getBoundingClientRect().height || el.scrollHeight || el.clientHeight;
 };
-
+  
 //获取其它元素的属性
 export const getElementStyle = (el: HTMLElement | Element, name: string) => {
   const style = window.getComputedStyle(el, null);

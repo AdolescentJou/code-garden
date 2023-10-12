@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container {
+        width: 600px;
+        height: 800px;
+        overflow: scroll;
+        margin: 0 auto;
+        border: 2px solid black;
+      }
+
+      .inner {
+        width: 100%;
+        height: 1200px;
+        position: relative;
+        background: linear-gradient(179.7deg, rgba(36, 63, 102, 1) 30%, rgba(36, 63, 102, 0) 100%);
+      }
+
+      .listItem {
+        width: 50px;
+        height: 50px;
+        border: 2px solid red;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      .listItem2 {
+        width: 50px;
+        height: 50px;
+        border: 2px solid red;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="inner">
+        <div class="listItem" id="listItem"></div>
+        <div class="listItem2" id="listItem2"></div>
+      </div>
+    </div>
+
+    <script>
+      let options = {
+        //null 是使用文档的视口作为容器。
+        root: document.querySelector('#scrollArea'),
+        rootMargin: '0px',
+        // threshold: [0, 0.25, 0.5, 0.75, 1],
+        threshold: 1.0
+      };
+
+      let callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+          // Each entry describes an intersection change for one observed
+          // target element:
+          //   entry.boundingClientRect
+          //   entry.intersectionRatio
+          //   entry.intersectionRect
+          //   entry.isIntersecting
+          //   entry.rootBounds
+          //   entry.target
+          //   entry.time
+        });
+      };
+
+      let observer = new IntersectionObserver(callback, options);
+
+      let target = document.querySelector('#listItem');
+      let target2 = document.querySelector('#listItem2');
+      observer.observe(target);
+      observer.observe(target2);
+    </script>
+  </body>
+</html>

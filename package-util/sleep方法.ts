@@ -1,4 +1,4 @@
-const sleep = (delay) => {
+const sleep = (delay:number) => {
   for (let start = Date.now(); Date.now() - start <= delay; ) {}
 };
 
