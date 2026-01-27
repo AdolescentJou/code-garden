@@ -1,0 +1,30 @@
+// 动画基类混合器  
+.animation-base(@animationName, @duration: 1s, @delay: 0s, @iterationCount: 1, @timingFunction: ease) {  
+  animation-name: @animationName;  
+  animation-duration: @duration;  
+  animation-delay: @delay;  
+  animation-iteration-count: @iterationCount;  
+  animation-timing-function: @timingFunction;  
+  
+  // 兼容性前缀  
+  -webkit-animation-name: @animationName;  
+  -webkit-animation-duration: @duration;  
+  -webkit-animation-delay: @delay;  
+  -webkit-animation-iteration-count: @iterationCount;  
+  -webkit-animation-timing-function: @timingFunction;  
+  
+  // 根据需要添加其他浏览器前缀  
+  // ...  
+}  
+  
+// 使用示例：定义一个名为'blink'的动画  
+@keyframes blink {  
+  0% { opacity: 1; }  
+  50% { opacity: 0; }  
+  100% { opacity: 1; }  
+}  
+  
+// 应用动画基类混合器到一个元素  
+.my-element {  
+  .animation-base(blink, 2s, 0.5s, infinite, ease-in-out);  
+}

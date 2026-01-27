@@ -5,7 +5,7 @@ async function async1() {
 }
  
 async function async2() {
-  console.log('3');   // async中的代码会同步执行
+  console.log('3');   // async中的代码会同步执行，只有await后的是放在微任务中
 }
  
 console.log('4');

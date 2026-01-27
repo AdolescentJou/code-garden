@@ -1,7 +1,7 @@
 async function async1() {
   console.log('async1 start'); // 2
   await async2();
-  console.log('async1 end'); // 6
+  console.log('async1 end'); // 6 这里其实是一个微任务，相当于then后面那部分
 }
 async function async2() {
   console.log('async2'); // 3

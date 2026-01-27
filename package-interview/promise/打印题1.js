@@ -11,11 +11,12 @@ new Promise(function (resolve) {
   new Promise((resove, reject) => {
     console.log(5);
     setTimeout(() => {
-      console.log(6);
-    }, 10);
+      console.log(6); // 这里和 1 的打印次序，取决于等待时间的长度
+    }, 100);
   });
 });
 console.log(7);
 console.log(8);
 
-// 2 3 7 8 4 5 6 1
+// 2 3 7 8 4  5 6 1
+// 
