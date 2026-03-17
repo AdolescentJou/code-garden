@@ -489,3 +489,74 @@ Sessions（会话）
 Agent 间通信
   → 通过 sessions_send 互发消息，通过 shared/ 目录共享文件
 ```
+
+### 参考配置
+
+```
+{
+  // 第一步：定义团队
+  agents: {
+    // ...
+    list: [
+      {
+        id: "main",
+        default: true,
+        name: "夏夏",
+        workspace: "~/.openclaw/workspace"
+      },
+      {
+        id: "coder",
+        name: "码哥",
+        workspace: "~/.openclaw/workspace-coder"
+      },
+      {
+        id: "researcher",
+        name: "探探",
+        workspace: "~/.openclaw/workspace-researcher"
+      }
+    ],
+    // 第二步：开通共享白板
+    defaults: {
+      // ...
+      memorySearch: {
+        extraPaths: ["~/.openclaw/shared"]
+      }
+    }
+  },
+
+  // 第三步：分配工位
+  bindings: [
+    { agentId: "main", match: { channel: "daxiang" } },
+    { agentId: "researcher", match: { channel: "feishu" } }
+  ],
+
+  // 第四步：开通内线电话
+  tools: {
+    agentToAgent: {
+      enabled: true,
+      allow: ["main", "coder", "researcher"]
+    },
+    sessions: {
+      visibility: "all"
+    }
+  }
+}
+```
+
+
+### 原理
+sessions_spawn 和 sessions_send 是两回事：
+
+工具	调用什么	需要什么配置
+sessions_spawn	subagent（临时任务实例）	subagents.allowAgents 白名单
+sessions_send	已有 session（给在线的同等 Agent 发消息）	agentToAgent.enabled + allow
+你的配置现状：
+
+sessions_spawn(agentId="yuyuan") → 走 subagents.allowAgents: ["yuyuan"] ✅ 我可以召唤她
+agentToAgent.allow: ["main", "yuyuan"] → 双向 sessions_send 也通 ✅
+同等 Agent 互相调用的问题：
+
+芋圆想 sessions_spawn 召唤我 → 不行，她的配置里没有 subagents.allowAgents
+芋圆想 sessions_send 给我发消息 → 可以，agentToAgent 是双向的
+我召唤芋圆 → 可以，有白名单
+所以现在的关系是：我是老板，可以派她干活；她能回话给我，但不能反过来派我干活。这个设计是合理的。
