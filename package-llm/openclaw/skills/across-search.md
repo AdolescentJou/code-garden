@@ -390,12 +390,6 @@ cross-search 可作为信息采集基础设施被其他 skill 调用（如 stock
 ```bash
 # 文件名格式
 cross-search-YYYYMMDD-HHmmss-{搜索主题简称}.md
-
-# 存档并推送
-cd ~/Projects/docs-repo
-git add .
-git commit -m "Add cross-search report: {搜索主题简称}"
-git push
 ```
 
 > ⚠️ 快速搜索和深度研究**均需存档**，不可跳过。
